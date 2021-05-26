@@ -51,23 +51,6 @@ resource "vsphere_virtual_machine" "vm-Worker" {
     }
   }
 
-  /*
-  provisioner "remote-exec" {
-    inline = [
-      "cat << EOF > /etc/hosts",
-      "${var.vmMasterIp} ${var.vmMasterName}",
-      "${var.vmWorkerNetwork}${"${var.vmWorkerHost}" + count.index + 1} ${var.vmWorkerName}${count.index + 1}",
-      "EOF"
-    ]
-    connection {
-      type     = "ssh"
-      user     = "root"
-      password = var.vcenter_vm_password
-      host     = "${var.vmWorkerNetwork}${"${var.vmWorkerHost}" + count.index + 1}"
-    }
-  }
-  */
-
   //------------------------------------------------------
   // Copy token file from terraform server to worker nodes
   provisioner "file" {

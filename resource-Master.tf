@@ -58,6 +58,6 @@ resource "vsphere_virtual_machine" "vm-Master" {
   //-----------------------------------------------
   //Copy join token from master server to terraform server
   provisioner "local-exec" {
-    command = "/usr/bin/sshpass -p \"Aa@123456\" scp -o StrictHostKeyChecking=no root@${var.vmMasterIp}:/tmp/kubeadm-token.sh /tmp/kubeadm-token.sh"
+    command = "/usr/bin/sshpass -p \"Aa@123456\" scp -o StrictHostKeyChecking=no root@${var.vmMasterIp}:/tmp/kubeadm-token.sh /tmp/kubeadm-token.sh ; /usr/bin/sshpass -p \"Aa@123456\" scp -o StrictHostKeyChecking=no root@${var.vmMasterIp}:/root/.kube/config /tmp/config"
   }
 }
